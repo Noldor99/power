@@ -1,0 +1,63 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateHeroInput {
+  catch_phrase: String!
+  nickname: String!
+  origin_description: String!
+  real_name: String!
+}
+
+input CreatePowerInput {
+  heroId: Float!
+  power: String!
+}
+
+type Hero {
+  catch_phrase: String!
+  id: ID!
+  nickname: String!
+  origin_description: String!
+  powers: [Power!]!
+  real_name: String!
+}
+
+type Mutation {
+  createHero(createHero: CreateHeroInput!): Hero!
+  createPower(createPower: CreatePowerInput!): Power!
+  removeHero(heroId: Int!): Hero!
+  removePower(id: String!): Power!
+  updateHero(heroId: Int!, updateHeroData: UpdateHeroInput!): Hero!
+}
+
+input PaginationHeroInput {
+  limit: Float!
+  page: Float!
+}
+
+type PaginationResponse {
+  heroes: [Hero!]!
+  total: Int!
+}
+
+type Power {
+  hero: Hero!
+  id: ID!
+  power: String!
+}
+
+type Query {
+  hero(heroId: Float!): Hero
+  heroPagination(paginationInput: PaginationHeroInput!): PaginationResponse!
+  sayHello: String!
+  searchHeroes(query: String!): [Hero!]!
+}
+
+input UpdateHeroInput {
+  catch_phrase: String
+  id: Int!
+  nickname: String
+  origin_description: String
+  real_name: String
+}
